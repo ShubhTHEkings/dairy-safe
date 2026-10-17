@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DairySafe is a software demonstration for milk quality screening, dairy batch traceability and risk investigation support." />
+  <title>DairySafe Intelligence Platform</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">DS</div>
+        <div><strong>DairySafe</strong><span>Intelligence Platform</span></div>
+      </div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><span class="nav-icon">▦</span> Dashboard</button>
+        <button class="nav-link" data-page="analysis"><span class="nav-icon">◉</span> Milk Quality Analysis</button>
+        <button class="nav-link" data-page="history"><span class="nav-icon">◷</span> Analysis History</button>
+        <button class="nav-link" data-page="traceability"><span class="nav-icon">⇄</span> Batch Traceability</button>
+        <button class="nav-link" data-page="risk"><span class="nav-icon">⚑</span> Risk & Recall Support</button>
+        <button class="nav-link" data-page="about"><span class="nav-icon">ⓘ</span> About Project</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="demo-pill"><span class="pulse-dot"></span><div><strong>Demo mode</strong><small>No validated ML model</small></div></div>
+        <p class="sidebar-foot">Final-year engineering project<br/>Software-only prototype</p>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="topbar-heading"><span class="eyebrow">DAIRY QUALITY & TRACEABILITY</span><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="topbar-right"><span class="local-badge"><span class="status-dot"></span> Local workspace</span><div class="avatar">DS</div></div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="page active" id="page-dashboard">
+          <div class="welcome-row"><div><h2>Good work starts with better visibility.</h2><p>Review milk samples, follow batch journeys and organize investigations in one place.</p></div><button class="btn btn-primary" data-go="analysis">＋ Analyze a sample</button></div>
+          <div class="alert-banner"><div class="alert-icon">!</div><div><strong>Demonstration screening only</strong><p>Current results use illustrative rules. They do not confirm that milk is pure, adulterated or safe. Laboratory verification is required.</p></div><button class="banner-close" id="dismissBanner" aria-label="Dismiss notice">×</button></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-icon teal">◉</div><div class="stat-label">Samples analysed</div><div class="stat-value" id="statSamples">0</div><div class="stat-note">Saved analysis records</div></article>
+            <article class="stat-card"><div class="stat-icon amber">⚑</div><div class="stat-label">Flagged for review</div><div class="stat-value" id="statFlagged">0</div><div class="stat-note">Require human review</div></article>
+            <article class="stat-card"><div class="stat-icon blue">⇄</div><div class="stat-label">Dairy batches</div><div class="stat-value" id="statBatches">0</div><div class="stat-note">Recorded batch IDs</div></article>
+            <article class="stat-card"><div class="stat-icon rose">◎</div><div class="stat-label">Open investigations</div><div class="stat-value" id="statInvestigations">0</div><div class="stat-note">Not yet closed</div></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel"><div class="panel-heading"><div><h3>Recent analysis</h3><p>Your latest saved sample records</p></div><button class="text-button" data-go="history">View history →</button></div><div id="recentAnalysis" class="empty-state"><div class="empty-icon">◉</div><strong>No samples yet</strong><p>Enter the six milk parameters to start a demonstration analysis.</p><button class="btn btn-secondary btn-small" data-go="analysis">Open analysis form</button></div></article>
+            <article class="panel"><div class="panel-heading"><div><h3>Quick actions</h3><p>Continue your workflow</p></div></div><div class="quick-actions"><button data-go="analysis"><span class="quick-icon teal">＋</span><span><strong>Analyze milk</strong><small>Enter six quality parameters</small></span><b>›</b></button><button data-go="traceability"><span class="quick-icon blue">⇄</span><span><strong>Create a batch</strong><small>Record source and supply chain</small></span><b>›</b></button><button data-go="risk"><span class="quick-icon rose">⚑</span><span><strong>Open investigation</strong><small>Review a batch or sample</small></span><b>›</b></button></div><div class="mini-flow"><span>Detect</span><i>→</i><span>Trace</span><i>→</i><span>Investigate</span></div></article>
+          </div>
+          <article class="panel"><div class="panel-heading"><div><h3>Project workflow</h3><p>Three connected modules</p></div></div><div class="module-cards"><div class="module-card"><div class="module-number">01</div><h4>Milk Adulteration Intelligence</h4><p>Manually enter pH, temperature, density, fat, SNF and conductivity for a rule-based demonstration screen.</p><button class="text-button" data-go="analysis">Open module →</button></div><div class="module-card"><div class="module-number">02</div><h4>Dairy Batch Traceability</h4><p>Link source, processing, products, distributor and retailer to follow batch movement in both directions.</p><button class="text-button" data-go="traceability">Open module →</button></div><div class="module-card"><div class="module-number">03</div><h4>Risk & Recall Support</h4><p>Organize investigations, hold statuses and laboratory verification for authorized review.</p><button class="text-button" data-go="risk">Open module →</button></div></div></article>
+        </section>
+
+        <section class="page" id="page-analysis">
+          <div class="page-intro"><div><span class="section-kicker">MODULE 01</span><h2>Milk Quality Analysis</h2><p>Enter actual readings from a milk analyzer, laboratory or your project test setup.</p></div></div>
+          <div class="notice"><strong>Important:</strong> No physical sensors or trained model are connected. The illustrative review ranges in this prototype are not regulatory limits or scientifically validated adulteration thresholds.</div>
+          <form id="analysisForm" class="panel form-panel" novalidate>
+            <div class="form-section-title"><span class="step-chip">A</span><div><h3>Sample information</h3><p>Identify the source and batch for traceability.</p></div></div>
+            <div class="form-grid three-col">
+              <label>Sample ID <input id="sampleId" type="text" readonly /></label>
+              <label>Milk source / dairy name <input id="sampleSource" type="text" placeholder="e.g. Shree Dairy" required maxlength="100" /></label>
+              <label>Milk type <select id="milkType" required><option value="">Select milk type</option><option>Cow</option><option>Buffalo</option><option>Mixed</option><option>Other</option></select></label>
+              <label>Batch ID <select id="sampleBatch"><option value="">No batch linked</option></select><small class="field-help">Create a batch in Module 2 first.</small></label>
+              <label>Sample date <input id="sampleDate" type="date" required /></label>
+              <label>Analyst name <input id="analystName" type="text" placeholder="Name or ID (optional)" maxlength="80" /></label>
+            </div>
+            <div class="form-divider"></div>
+            <div class="form-section-title"><span class="step-chip">B</span><div><h3>Six milk-quality parameters</h3><p>Enter measured values and use the units shown.</p></div></div>
+            <div class="form-grid three-col parameter-grid">
+              <label><span>pH <em>unitless</em></span><input id="ph" type="number" min="0" max="14" step="0.01" placeholder="e.g. 6.60" required /><small class="field-help">Allowed entry: 0–14</small></label>
+              <label><span>Temperature <em>°C</em></span><input id="temperature" type="number" min="-50" max="100" step="0.1" placeholder="e.g. 5.0" required /><small class="field-help">Enter measured temperature</small></label>
+              <label><span>Density <em>g/mL</em></span><input id="density" type="number" min="0.5" max="2" step="0.0001" placeholder="e.g. 1.030" required /><small class="field-help">Keep units consistent</small></label>
+              <label><span>Fat <em>%</em></span><input id="fat" type="number" min="0" max="100" step="0.1" placeholder="e.g. 4.0" required /><small class="field-help">Value from analyzer / lab</small></label>
+              <label><span>SNF <em>%</em></span><input id="snf" type="number" min="0" max="100" step="0.1" placeholder="e.g. 8.5" required /><small class="field-help">Solids-not-fat</small></label>
+              <label><span>Electrical conductivity <em>µS/cm</em></span><input id="conductivity" type="number" min="0" max="100000" step="1" placeholder="e.g. 4500" required /><small class="field-help">Check your device's unit</small></label>
+            </div>
+            <label class="full-label">Remarks <textarea id="sampleRemarks" rows="2" placeholder="Optional notes about the sample or test conditions"></textarea></label>
+            <div class="form-actions"><button type="button" class="btn btn-ghost" id="clearAnalysis">Clear form</button><button type="submit" class="btn btn-primary">Analyze milk →</button></div>
+          </form>
+          <div id="analysisResult" class="result-wrap hidden" aria-live="polite"></div>
+        </section>
+
+        <section class="page" id="page-history">
+          <div class="page-intro"><div><span class="section-kicker">RECORDS</span><h2>Analysis History</h2><p>Search saved samples and review the exact submitted values.</p></div><button class="btn btn-primary" data-go="analysis">＋ New analysis</button></div>
+          <article class="panel"><div class="table-toolbar"><div class="search-box"><span>⌕</span><input id="historySearch" type="search" placeholder="Search sample, source or batch…" /></div><select id="historyStatus"><option value="">All statuses</option><option value="Review Required">Review Required</option><option value="No Demo Flags">No Demo Flags</option></select></div><div class="table-scroll"><table><thead><tr><th>Sample ID</th><th>Date</th><th>Source</th><th>Batch</th><th>Status</th><th>Actions</th></tr></thead><tbody id="historyBody"></tbody></table></div><div id="historyEmpty" class="table-empty hidden">No analysis records match your search.</div></article>
+        </section>
+
+        <section class="page" id="page-traceability">
+          <div class="page-intro"><div><span class="section-kicker">MODULE 02</span><h2>Batch Traceability</h2><p>Record a batch and its supply-chain path, then trace forward or backward.</p></div></div>
+          <div class="two-column-layout">
+            <form id="batchForm" class="panel form-panel">
+              <div class="panel-heading"><div><h3>Create a batch</h3><p>Fields marked with * are required.</p></div></div>
+              <label>Batch ID <input id="batchId" type="text" readonly /></label>
+              <div class="form-grid two-col">
+                <label>Milk source / supplier * <input id="batchSource" required maxlength="100" placeholder="Supplier or farm" /></label>
+                <label>Collection centre <input id="collectionCentre" maxlength="100" placeholder="Collection centre" /></label>
+                <label>Collection date * <input id="collectionDate" type="date" required /></label>
+                <label>Quantity (litres) * <input id="quantity" type="number" min="0.1" step="0.1" required placeholder="e.g. 500" /></label>
+                <label>Processing unit <input id="processingUnit" maxlength="100" placeholder="Processing facility" /></label>
+                <label>Product name / lot <input id="productName" maxlength="100" placeholder="e.g. Pasteurised milk" /></label>
+                <label>Product ID <input id="productId" maxlength="50" placeholder="Optional lot ID" /></label>
+                <label>Product quantity <input id="productQuantity" maxlength="60" placeholder="e.g. 450 L / 900 packs" /></label>
+                <label>Distributor <input id="distributor" maxlength="100" placeholder="Distributor name" /></label>
+                <label>Retailer <input id="retailer" maxlength="100" placeholder="Retailer / outlet" /></label>
+              </div>
+              <label>Batch status <select id="batchStatus"><option>Recorded</option><option>Under Investigation</option><option>On Hold</option><option>Cleared After Review</option></select></label>
+              <label>Notes <textarea id="batchNotes" rows="2" placeholder="Optional details"></textarea></label>
+              <div class="form-actions"><button type="button" class="btn btn-ghost" id="clearBatch">Clear</button><button type="submit" class="btn btn-primary">Save batch</button></div>
+            </form>
+            <div class="trace-side">
+              <article class="panel"><div class="panel-heading"><div><h3>Find a trace</h3><p>Enter a batch or product ID.</p></div></div><label>Search ID <input id="traceSearch" type="search" placeholder="Batch ID or Product ID" /></label><div class="trace-buttons"><button class="btn btn-secondary" id="traceForward">Forward trace</button><button class="btn btn-secondary" id="traceBackward">Backward trace</button></div><div id="traceResult" class="trace-result empty-state compact"><div class="empty-icon">⇄</div><strong>Trace a batch or product</strong><p>Your linked supply-chain records will appear here.</p></div></article>
+              <article class="panel"><div class="panel-heading"><div><h3>Saved batches</h3><p>Select a batch to view its record.</p></div></div><div id="batchList" class="batch-list"></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-risk">
+          <div class="page-intro"><div><span class="section-kicker">MODULE 03</span><h2>Risk & Recall Support</h2><p>Document an investigation and identify linked products and locations.</p></div><button class="btn btn-primary" id="openInvestigationBtn">＋ New investigation</button></div>
+          <div class="notice amber-notice"><strong>Human decision required.</strong> These records support investigation only. Do not initiate a real recall or declare products unsafe solely from the demonstration screening result.</div>
+          <div class="risk-layout">
+            <form id="investigationForm" class="panel form-panel hidden">
+              <div class="panel-heading"><div><h3>Create investigation</h3><p>Link the case to a sample or batch.</p></div><button type="button" class="icon-button" id="closeInvestigation" aria-label="Close form">×</button></div>
+              <label>Related sample <select id="investSample"><option value="">None selected</option></select></label>
+              <label>Related batch * <select id="investBatch" required><option value="">Select a batch</option></select></label>
+              <label>Investigation priority <select id="investPriority"><option>Routine review</option><option>Priority review</option><option>Urgent review</option></select><small class="field-help">Priority is a workflow label, not a probability of harm.</small></label>
+              <label>Initial notes <textarea id="investNotes" rows="3" placeholder="Why is this case being reviewed?" required></textarea></label>
+              <div class="form-actions"><button type="button" class="btn btn-ghost" id="cancelInvestigation">Cancel</button><button type="submit" class="btn btn-primary">Create case</button></div>
+            </form>
+            <article class="panel"><div class="panel-heading"><div><h3>Investigation register</h3><p>Track case status and verification.</p></div><select id="investStatusFilter" class="filter-select"><option value="">All cases</option><option>Open</option><option>Under Investigation</option><option>Awaiting Laboratory Verification</option><option>Cleared After Review</option><option>On Hold</option><option>Closed</option></select></div><div id="investigationList" class="investigation-list"></div></article>
+          </div>
+        </section>
+
+        <section class="page" id="page-about">
+          <div class="page-intro"><div><span class="section-kicker">PROJECT OVERVIEW</span><h2>About DairySafe</h2><p>A software prototype connecting milk screening with batch traceability and investigation support.</p></div></div>
+          <article class="panel about-hero"><div class="brand-mark large">DS</div><div><span class="section-kicker">FINAL-YEAR ENGINEERING PROJECT</span><h2>DairySafe Intelligence Platform</h2><p>Explainable AI-Based Milk Adulteration Detection and Risk-Aware Dairy Supply-Chain Traceability</p></div></article>
+          <div class="about-grid"><article class="panel"><h3>Problem addressed</h3><p>Milk quality checks, batch tracking and investigation records may be maintained separately. DairySafe demonstrates how these workflows can be linked within one software interface.</p></article><article class="panel"><h3>Project objectives</h3><ul><li>Enter six physicochemical milk parameters manually.</li><li>Demonstrate a transparent screening workflow.</li><li>Trace batches forward and backward through the supply chain.</li><li>Document risk investigation and laboratory verification.</li></ul></article><article class="panel"><h3>Three modules</h3><ol><li>Milk Adulteration Intelligence</li><li>Dairy Batch Traceability</li><li>Risk & Targeted Recall Support</li></ol></article><article class="panel"><h3>Current limitations</h3><ul><li>No physical sensors or external backend.</li><li>LocalStorage is specific to this browser profile.</li><li>Screening rules are illustrative and not validated.</li><li>A trained model requires suitable labelled data and evaluation.</li></ul></article></div>
+          <article class="panel"><h3>Project details</h3><div class="project-details"><div><span>Copyright diary number</span><strong>LD-47765/2026-CO</strong></div><div><span>Application</span><strong>Submitted; registration approval pending</strong></div><div><span>Implementation</span><strong>HTML · CSS · JavaScript</strong></div><div><span>Data storage</span><strong>Browser LocalStorage</strong></div></div><p class="small-muted">Copyright diary number is shown as the project-provided reference; it is not a registration certificate.</p></article>
+          <div class="notice"><strong>Scientific disclaimer:</strong> A demonstration status is not proof of purity or safety. Use suitable laboratory methods for actual milk-quality confirmation. Do not use this prototype for regulatory or commercial decisions.</div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>© DairySafe Intelligence Platform</span><span>Software-only prototype · Demonstration rules are not validated</span></footer>
+    </main>
+  </div>
+  <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
